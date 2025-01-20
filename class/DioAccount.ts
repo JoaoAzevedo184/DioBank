@@ -1,42 +1,70 @@
 export abstract class DioAccount {
-  private name: string
+  private readonly name: string
   private readonly accountNumber: number
-  balance: number = 0
+  private balance: number = 0
+  private debt: number = 0
   private status: boolean = true
 
   constructor(name: string, accountNumber: number){
     this.name = name
     this.accountNumber = accountNumber
+    this.debt = 0
   }
 
-  setName = (name: string): void => {
-    this.name = name
-    console.log('Nome alterado com sucesso!')
+  //Função para Aumentar dívida
+  setDebt = (debt: number): void =>{
+    this.debt = this.debt - debt
+    console.log(`Dívida Atualizada! O valor atual da dívida é :R$${this.debt}`)
   }
 
+  //Função para Diminuir dívida
+  improvingDebt = (debt: number): void =>{
+    this.debt = this.debt + debt
+    console.log(`Dívida atualizada! O valor atual da dívida é :R$${this.debt}`)
+  }
+
+  //Função para retornar nome
   getName = (): string => {
     return this.name
   }
 
-  deposit = (): void => {
+  deposit = (balance: number): void => {
     if(this.validateStatus()){
-      console.log('Voce depositou')
+      if(balance>0){
+        this.setBalance(balance)
+        console.log('Depósito Concluído!')
+      }
+      console.log('Depósito Inválido! O valor não pode ser menor ou igual a zero!')
     }
+    console.log('Depósito Inválido! Tente Novamente!')
   }
 
-  withdraw = (): void => {
-    console.log('Voce sacou')
+  withdraw = (balance: number): void => {
+    if(this.validateStatus()){
+      if(balance <= 0){
+        console.log('Saque Inválido! O valor não pode ser menor ou igual a zero!')
+      }else if(balance <= this.balance){
+        this.balance = this.balance - balance
+        console.log('Saque Concluído!')
+      }
+      console.log(`Saque Inválido! O valor solicitado excede o saldo disponível do contribuinte ${this.name}.`)
+    }
+    console.log( 'Saque Inválido! Tente Novamente!')
+  }
+
+  setBalance =(balance: number): void =>{
+    this.balance = balance
+    console.log(`Conta: R$${this.balance}`)
   }
 
   getBalance = (): void => {
-    console.log(this.balance)
+    console.log(`Conta: R$${this.balance}`)
   }
 
-  private validateStatus = (): boolean => {
+  protected validateStatus = (): boolean => {
     if (this.status) {
       return this.status
     }
-
     throw new Error('Conta inválida')
   }
 }
