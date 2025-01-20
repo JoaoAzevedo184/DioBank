@@ -10,8 +10,5 @@ peopleAccount.withdraw(40)
 peopleAccount.withdraw(0)
 peopleAccount.withdraw(30)
 
-
-
 const companyAccount: CompanyAccount = new CompanyAccount('DIO', 20)
 companyAccount.getLoan(30)
-console.log(companyAccount)

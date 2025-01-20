@@ -13,9 +13,10 @@ export class SpecialCustomer extends DioAccount {
           if(balance>0){
             this.setBalance(this.vip(balance))
             console.log('Depósito Concluído!')
-          }
-          console.log('Depósito Inválido! O valor não pode ser menor ou igual a zero!')
-        }
+          }else{
+          console.log('Depósito Inválido! O valor não pode ser menor ou igual a zero!')}
+        }else{
         console.log('Depósito Inválido! Tente Novamente!')
       }
+    }
 }

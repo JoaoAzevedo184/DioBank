@@ -33,10 +33,12 @@ export abstract class DioAccount {
       if(balance>0){
         this.setBalance(balance)
         console.log('Depósito Concluído!')
-      }
-      console.log('Depósito Inválido! O valor não pode ser menor ou igual a zero!')
+      }else{
+        console.log('Depósito Inválido! O valor não pode ser menor ou igual a zero!')
+      } 
+    }else{
+      console.log('Depósito Inválido! Tente Novamente!')
     }
-    console.log('Depósito Inválido! Tente Novamente!')
   }
 
   withdraw = (balance: number): void => {
@@ -46,10 +48,12 @@ export abstract class DioAccount {
       }else if(balance <= this.balance){
         this.balance = this.balance - balance
         console.log('Saque Concluído!')
+      }else{
+        console.log(`Saque Inválido! O valor solicitado excede o saldo disponível do contribuinte ${this.name}.`)
       }
-      console.log(`Saque Inválido! O valor solicitado excede o saldo disponível do contribuinte ${this.name}.`)
+    }else{
+      console.log('Saque Inválido! Tente Novamente!')
     }
-    console.log( 'Saque Inválido! Tente Novamente!')
   }
 
   setBalance =(balance: number): void =>{

@@ -11,7 +11,8 @@ export class CompanyAccount extends DioAccount {
     if(this.validateStatus()){
       this.setDebt(balance)
       console.log('Empréstimo Concluído!')
+    }else{
+      console.log('Empréstimo Negado!')
     }
-    console.log('Empréstimo Negado!')
   }
 }
